@@ -49,3 +49,12 @@ pip install jupyter pandas requests matplotlib seaborn plotly ipywidgets
 ## Data Files
 
 All CSV files live in `data/` and are excluded from git (see `.gitignore`). The folder is tracked via `data/.gitkeep`.
+
+## GitHub Pages Compatibility
+
+The goal is to eventually publish this as a GitHub Page. Keep this in mind when building interactive features:
+
+- **Plotly** — fully interactive on static GitHub Pages (pure JavaScript). Use Plotly for all filters, dropdowns, and sliders intended for the published page.
+- **ipywidgets** — requires a live Python kernel; widgets will be non-functional on a static page. Limit ipywidgets to local/exploratory use only, never for features meant to work on the webpage.
+
+To publish: `jupyter nbconvert --to html --execute npdes_violation_analysis.ipynb`, then commit the HTML to a `gh-pages` branch or `docs/` folder.

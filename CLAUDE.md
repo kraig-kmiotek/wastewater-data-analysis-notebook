@@ -42,5 +42,10 @@ pip install jupyter pandas requests matplotlib seaborn plotly ipywidgets
 ## Adding a New State
 
 1. Download the state's effluent violations CSV from [ECHO data downloads](https://echo.epa.gov/tools/data-downloads) — filename must follow the pattern `{STATE_ABBR}_NPDES_EFF_VIOLATIONS.csv`.
-2. Add the filename to `DATA_FILES` in the Configuration cell.
-3. Re-run the notebook. The facility cache will be extended automatically for any new `NPDES_ID` values.
+2. Place the file in the `data/` folder.
+3. Add `'data/{STATE_ABBR}_NPDES_EFF_VIOLATIONS.csv'` to `DATA_FILES` in the Configuration cell.
+4. Re-run the notebook. The facility cache (`data/facility_lookup.csv`) will be extended automatically for any new `NPDES_ID` values.
+
+## Data Files
+
+All CSV files live in `data/` and are excluded from git (see `.gitignore`). The folder is tracked via `data/.gitkeep`.

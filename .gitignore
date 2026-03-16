@@ -1,0 +1,9 @@
+# Data files — too large for git; store locally in data/
+data/*.csv
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc

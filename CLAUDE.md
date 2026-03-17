@@ -12,7 +12,9 @@ Two data sources, used in distinct stages:
 
 1. **`AZ_NPDES_EFF_VIOLATIONS.csv`** — Primary violations dataset, downloaded from the EPA ECHO effluent violations download tool. Loaded directly with pandas in the Data Loading section. Not fetched from an API.
 
-2. **ECHO API** (`https://echo.epa.gov/api/echo/cwa_rest_services.get_facility_info`) — Used only in Facility Enrichment to look up metadata (facility name, SIC code, city, state, lat/long) for each unique `NPDES_ID` found in the CSV. Results are cached to **`facility_lookup.csv`** so the API is only called once.
+2. **ECHO DFR API** (`https://echodata.epa.gov/echo/dfr_rest_services.get_dfr`) — Used only in Facility Enrichment to look up metadata (facility name, SIC code, city, state, lat/long) for each unique `NPDES_ID` found in the CSV. Results are cached to **`facility_lookup.csv`** so the API is only called once.
+
+   > **Note:** The older `cwa_rest_services.get_facility_info` endpoint (on `echo.epa.gov`) is a geographic cluster search and does not support single-permit lookup by `p_id` — it ignores the parameter and returns all ~1.1M facilities. The correct single-permit endpoint is `dfr_rest_services.get_dfr` on `echodata.epa.gov`, called with `?p_id={NPDES_ID}&output=JSON`. Facility name and coordinates are extracted from `Results.Permits[]`; SIC code from `Results.SIC.Sources[]` matching `SourceID == NPDES_ID`.
 
 ## Running the Notebook
 
@@ -37,7 +39,7 @@ pip install jupyter pandas requests matplotlib seaborn plotly ipywidgets
 3. **Data Loading** — loops over `DATA_FILES`, tags each row with `SOURCE_STATE` (parsed from filename), concatenates into a single `violations` DataFrame
 4. **Facility Enrichment** — ECHO API lookups cached to `facility_lookup.csv`, joined on `NPDES_ID`
 5. **Analysis** — violation trends, repeat offenders, compliance rates
-6. **Visualizations** — static matplotlib/seaborn charts and interactive Plotly figures
+6. **Visualizations** — interactive Plotly charts (line trend, top facilities bar, parameter bar colored by measurement technique, facility scatter map)
 
 ## Adding a New State
 

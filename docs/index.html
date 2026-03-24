@@ -8217,10 +8217,8 @@ main {
       <span class="nav-badge">Arizona</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#1.-Data-Loading">Data Loading</a></li>
-      <li><a href="#2.-Facility-Enrichment">Enrichment</a></li>
-      <li><a href="#3.-Analysis">Analysis</a></li>
       <li><a href="#4.-Visualizations">Visualizations</a></li>
+      <li><a href="https://echo.epa.gov/tools/data-downloads" target="_blank">Data Source ↗</a></li>
     </ul>
   </div>
 </nav>
@@ -8231,40 +8229,17 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="NPDES-Violation-Analysis">NPDES Violation Analysis<a class="anchor-link" href="#NPDES-Violation-Analysis">¶</a></h1><p>This notebook analyzes wastewater discharge violations reported under the <strong>National Pollutant Discharge Elimination System (NPDES)</strong> using a pre-downloaded violations dataset from EPA ECHO, enriched with facility metadata fetched from the ECHO API.</p>
-<h2 id="Data-Architecture">Data Architecture<a class="anchor-link" href="#Data-Architecture">¶</a></h2><table>
-<thead>
-<tr>
-<th>Source</th>
-<th>File</th>
-<th>Used In</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>EPA ECHO download tool</td>
-<td>one or more <code>*_NPDES_EFF_VIOLATIONS.csv</code> files</td>
-<td>Data Loading</td>
-<td>Primary violations dataset — loaded directly with pandas, one file per state</td>
-</tr>
-<tr>
-<td><a href="https://echo.epa.gov/api/echo/cwa_rest_services.get_facility_info">ECHO API</a></td>
-<td><code>facility_lookup.csv</code> (cached)</td>
-<td>Facility Enrichment</td>
-<td>Facility metadata (name, SIC code, city, state, lat/long) keyed by NPDES_ID</td>
-</tr>
-</tbody>
-</table>
-<p>Add state CSV files to <code>DATA_FILES</code> in the <strong>Configuration</strong> cell to expand coverage. The API cache (<code>facility_lookup.csv</code>) is keyed by <code>NPDES_ID</code> (nationally unique) and grows automatically as new states are added.</p>
-<h2 id="What-this-notebook-does">What this notebook does<a class="anchor-link" href="#What-this-notebook-does">¶</a></h2><ol>
-<li><strong>Data Loading</strong> — Reads all CSVs in <code>DATA_FILES</code>, tags each row with its source state, and concatenates into a single DataFrame.</li>
-<li><strong>Facility Enrichment</strong> — Looks up facility metadata from the ECHO API for each unique <code>NPDES_ID</code>, caches results to <code>facility_lookup.csv</code>, and joins to the violations DataFrame.</li>
-<li><strong>Analysis</strong> — Summarizes violation trends, identifies repeat offenders, and computes compliance rates over time.</li>
-<li><strong>Visualizations</strong> — Produces presentation-quality charts and interactive Plotly figures for exploring the data.</li>
-</ol>
+<h1 id="NPDES-Violation-Analysis">NPDES Violation Analysis</h1>
+<p>Tracking wastewater discharge violations across <strong>Arizona</strong> facilities permitted under the <strong>National Pollutant Discharge Elimination System (NPDES)</strong> — the federal program that sets limits on what pollutants industries and municipalities may discharge into U.S. waterways.</p>
+<h2>About this data</h2>
+<p>Violation records come from <a href="https://echo.epa.gov/tools/data-downloads">EPA ECHO</a> (Enforcement and Compliance History Online), the EPA's public compliance database. Each record represents a reported exceedance of an effluent limit for a specific pollutant at a permitted Arizona facility. Facility names, locations, and industry classifications are enriched via the ECHO API.</p>
+<ul>
+<li><strong>Geography:</strong> Arizona NPDES-permitted facilities</li>
+<li><strong>Source:</strong> EPA ECHO Effluent Violations download</li>
+<li><strong>Enrichment:</strong> Facility name, city, lat/long, and SIC industry code from the ECHO DFR API</li>
+</ul>
 <hr/>
-<p><em>Primary data: EPA ECHO effluent violations download — <a href="https://echo.epa.gov/tools/data-downloads">ECHO data downloads</a></em></p>
+<p><em>Use the interactive charts below to explore violation trends by year, top offending facilities, pollutant types, and facility locations.</em></p>
 </div>
 </div>
 </div>
@@ -9561,6 +9536,76 @@ if (outputEl) {{
 </div>
 </div>
 </div>
+
+<!-- High-specificity overrides (must come after all other styles) -->
+<style>
+/* === Hero: force all text white regardless of earlier rules === */
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown h1,
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown h2,
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown h3 {
+  color: #ffffff !important;
+  border: none !important;
+  display: block !important;
+  padding: 0 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  font-size: inherit !important;
+}
+
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown h1 {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+  margin: 0 0 14px !important;
+}
+
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown h2 {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: rgba(255,255,255,0.65) !important;
+  margin: 28px 0 10px !important;
+}
+
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown p,
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown li,
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown em {
+  color: rgba(255,255,255,0.88) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.75 !important;
+}
+
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown strong {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown a {
+  color: #d8b4fe !important;
+}
+
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown hr {
+  border: none !important;
+  border-top: 1px solid rgba(255,255,255,0.2) !important;
+  margin: 20px 0 14px !important;
+}
+
+[id="cell-id=0f9f53dc"] .jp-RenderedMarkdown ul {
+  padding-left: 1.4em !important;
+  margin: 10px 0 !important;
+}
+
+/* === Hide sections 1, 2, 3 and their outputs === */
+[id="cell-id=f53f67c9285d4f7c"],   /* 1. Data Loading heading */
+[id="cell-id=hzq8nz8ytbq"],        /* data loading output */
+[id="cell-id=84f6b4efc314430d"],   /* 2. Facility Enrichment heading */
+[id="cell-id=5fd2d419fba14501"],   /* enrichment output */
+[id="cell-id=4b0c01dfafae4b2b"],   /* 3. Analysis heading */
+[id="cell-id=2a21ae6d633d4136"] {  /* analysis output */
+  display: none !important;
+}
+</style>
 
 <!-- Custom Footer -->
 <footer id="custom-footer">

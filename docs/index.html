@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>NPDES Violation Analysis — Arizona</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>NPDES Violation Analysis</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -8214,7 +8214,7 @@ main {
   <div class="nav-inner">
     <a class="nav-brand" href="#NPDES-Violation-Analysis">
       <span class="nav-brand-title">NPDES Violation Analysis</span>
-      <span class="nav-badge">Arizona</span>
+      <span class="nav-badge">EPA ECHO</span>
     </a>
     <ul class="nav-links">
       <li><a href="#4.-Visualizations">Visualizations</a></li>
@@ -8230,11 +8230,11 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="NPDES-Violation-Analysis">NPDES Violation Analysis</h1>
-<p>Tracking wastewater discharge violations across <strong>Arizona</strong> facilities permitted under the <strong>National Pollutant Discharge Elimination System (NPDES)</strong> — the federal program that sets limits on what pollutants industries and municipalities may discharge into U.S. waterways.</p>
+<p>Tracking wastewater discharge violations across facilities permitted under the <strong>National Pollutant Discharge Elimination System (NPDES)</strong> — the federal program that sets limits on what pollutants industries and municipalities may discharge into U.S. waterways.</p>
 <h2>About this data</h2>
 <p>Violation records come from <a href="https://echo.epa.gov/tools/data-downloads">EPA ECHO</a> (Enforcement and Compliance History Online), the EPA's public compliance database. Each record represents a reported exceedance of an effluent limit for a specific pollutant at a permitted Arizona facility. Facility names, locations, and industry classifications are enriched via the ECHO API.</p>
 <ul>
-<li><strong>Geography:</strong> Arizona NPDES-permitted facilities</li>
+<li><strong>Geography:</strong> NPDES-permitted facilities by state</li>
 <li><strong>Source:</strong> EPA ECHO Effluent Violations download</li>
 <li><strong>Enrichment:</strong> Facility name, city, lat/long, and SIC industry code from the ECHO DFR API</li>
 </ul>
@@ -9357,7 +9357,7 @@ ECHO reports three primary violation codes: D80 (monitoring-only report overdue)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h2 id="4.-Visualizations">4. Visualizations<a class="anchor-link" href="#4.-Visualizations">¶</a></h2><p>The charts below are built with <strong>Plotly Express</strong> so they remain fully interactive on a
+<h2 id="4.-Visualizations">Visualizations</h2><p>The charts below are built with <strong>Plotly Express</strong> so they remain fully interactive on a
 static GitHub Pages export — no live Python kernel required. Each chart is designed to stand
 alone as a portfolio piece, with descriptive titles, labeled axes, and clean layouts.</p>
 <ul>
